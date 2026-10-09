@@ -23,7 +23,7 @@ Add the dependency (this brings in `postgres-leader-latch`; you also need a Post
 <dependency>
     <groupId>org.kiwiproject</groupId>
     <artifactId>dropwizard-postgres-leader-latch</artifactId>
-    <version>0.1.0</version>
+    <version>[current-version]</version>
 </dependency>
 ```
 
