@@ -4,7 +4,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kiwiproject_dropwizard-postgres-leader-latch&metric=alert_status)](https://sonarcloud.io/dashboard?id=kiwiproject_dropwizard-postgres-leader-latch)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kiwiproject_dropwizard-postgres-leader-latch&metric=coverage)](https://sonarcloud.io/dashboard?id=kiwiproject_dropwizard-postgres-leader-latch)
 [![CodeQL](https://github.com/kiwiproject/dropwizard-postgres-leader-latch/actions/workflows/codeql.yml/badge.svg)](https://github.com/kiwiproject/dropwizard-postgres-leader-latch/actions/workflows/codeql.yml)
+[![javadoc](https://javadoc.io/badge2/org.kiwiproject/dropwizard-postgres-leader-latch/javadoc.svg)](https://javadoc.io/doc/org.kiwiproject/dropwizard-postgres-leader-latch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Maven Central](https://img.shields.io/maven-central/v/org.kiwiproject/dropwizard-postgres-leader-latch)](https://central.sonatype.com/artifact/org.kiwiproject/dropwizard-postgres-leader-latch/)
 
 This is a small library that integrates the Postgres-backed leader latch from
 [postgres-leader-latch](https://github.com/kiwiproject/postgres-leader-latch) into a Dropwizard service.
@@ -12,8 +14,6 @@ It is the Postgres counterpart to
 [dropwizard-leader-latch](https://github.com/kiwiproject/dropwizard-leader-latch), which uses Apache
 Curator and ZooKeeper, and to
 [dropwizard-dynamodb-leader-latch](https://github.com/kiwiproject/dropwizard-dynamodb-leader-latch), which uses DynamoDB.
-
-> Status: under development. Not yet released.
 
 ## Usage
 
@@ -23,7 +23,7 @@ Add the dependency (this brings in `postgres-leader-latch`; you also need a Post
 <dependency>
     <groupId>org.kiwiproject</groupId>
     <artifactId>dropwizard-postgres-leader-latch</artifactId>
-    <version>${dropwizard-postgres-leader-latch.version}</version>
+    <version>[current-version]</version>
 </dependency>
 ```
 
