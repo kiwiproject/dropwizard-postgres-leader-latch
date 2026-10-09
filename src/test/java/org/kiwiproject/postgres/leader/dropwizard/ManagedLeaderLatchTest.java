@@ -45,7 +45,7 @@ class ManagedLeaderLatchTest {
         @Test
         void shouldRejectNullLatch() {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new ManagedLeaderLatch((LeaderLatch) null))
+                    .isThrownBy(() -> new ManagedLeaderLatch(null))
                     .withMessage("latch must not be null");
         }
 
@@ -130,7 +130,7 @@ class ManagedLeaderLatchTest {
             var configuration = LeaderLatchConfiguration.defaults();
 
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new ManagedLeaderLatch(connectionSupplier, configuration, (ServiceDescriptor) null))
+                    .isThrownBy(() -> new ManagedLeaderLatch(connectionSupplier, configuration, null))
                     .withMessage("serviceDescriptor must not be null");
         }
     }

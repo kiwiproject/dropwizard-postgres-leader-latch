@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import static org.assertj.core.api.Assertions.entry;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.kiwiproject.jaxrs.KiwiGenericTypes.MAP_OF_STRING_TO_OBJECT_GENERIC_TYPE;
+import static org.kiwiproject.test.dropwizard.resource.DropwizardResourceTests.resourceExtensionFor;
 import static org.kiwiproject.test.jaxrs.JaxrsTestHelper.assertOkResponse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
@@ -31,10 +32,7 @@ class LeaderResourceTest {
 
     private static final ManagedLeaderLatch LEADER_LATCH = mock(ManagedLeaderLatch.class);
 
-    private static final ResourceExtension RESOURCE = ResourceExtension.builder()
-            .bootstrapLogging(false)
-            .addResource(new LeaderResource(LEADER_LATCH))
-            .build();
+    private static final ResourceExtension RESOURCE = resourceExtensionFor(new LeaderResource(LEADER_LATCH));
 
     @AfterEach
     void tearDown() {
@@ -53,8 +51,7 @@ class LeaderResourceTest {
     void shouldReportLeadership(boolean isLeader) {
         when(LEADER_LATCH.hasLeadership()).thenReturn(isLeader);
 
-        var response = RESOURCE.client()
-                .target("/kiwi/leader-latch/leader")
+        var response = RESOURCE.target("/kiwi/leader-latch/leader")
                 .request()
                 .get();
         assertOkResponse(response);
@@ -72,8 +69,7 @@ class LeaderResourceTest {
         when(LEADER_LATCH.getLeader()).thenReturn(new LeaderInfo.Leader("test-id-1", Instant.now()));
         when(LEADER_LATCH.checkLeadershipStatus()).thenReturn(new LeadershipStatus.IsLeader());
 
-        var response = RESOURCE.client()
-                .target("/kiwi/leader-latch/latch")
+        var response = RESOURCE.target("/kiwi/leader-latch/latch")
                 .request()
                 .get();
         assertOkResponse(response);
@@ -95,8 +91,7 @@ class LeaderResourceTest {
         when(LEADER_LATCH.getLeader()).thenReturn(new LeaderInfo.Leader("test-id-2", Instant.now()));
         when(LEADER_LATCH.checkLeadershipStatus()).thenReturn(new LeadershipStatus.NotLeader());
 
-        var response = RESOURCE.client()
-                .target("/kiwi/leader-latch/latch")
+        var response = RESOURCE.target("/kiwi/leader-latch/latch")
                 .request()
                 .get();
         assertOkResponse(response);
@@ -116,8 +111,7 @@ class LeaderResourceTest {
         when(LEADER_LATCH.getLeader()).thenReturn(new LeaderInfo.LookupFailed(new IllegalStateException("boom")));
         when(LEADER_LATCH.checkLeadershipStatus()).thenReturn(new LeadershipStatus.NotStarted());
 
-        var response = RESOURCE.client()
-                .target("/kiwi/leader-latch/latch")
+        var response = RESOURCE.target("/kiwi/leader-latch/latch")
                 .request()
                 .get();
         assertOkResponse(response);

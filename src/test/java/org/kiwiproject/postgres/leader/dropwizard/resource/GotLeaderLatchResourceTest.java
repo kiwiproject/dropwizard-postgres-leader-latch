@@ -1,5 +1,6 @@
 package org.kiwiproject.postgres.leader.dropwizard.resource;
 
+import static org.kiwiproject.test.dropwizard.resource.DropwizardResourceTests.resourceExtensionFor;
 import static org.kiwiproject.test.jaxrs.JaxrsTestHelper.assertNoContentResponse;
 
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
@@ -12,15 +13,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @DisplayName("GotLeaderLatchResource")
 class GotLeaderLatchResourceTest {
 
-    private static final ResourceExtension RESOURCE = ResourceExtension.builder()
-            .bootstrapLogging(false)
-            .addResource(new GotLeaderLatchResource())
-            .build();
+    private static final ResourceExtension RESOURCE = resourceExtensionFor(new GotLeaderLatchResource());
 
     @Test
     void shouldReturnNoContent() {
-        var response = RESOURCE.client()
-                .target("/kiwi/got-leader-latch")
+        var response = RESOURCE.target("/kiwi/got-leader-latch")
                 .request()
                 .get();
 
