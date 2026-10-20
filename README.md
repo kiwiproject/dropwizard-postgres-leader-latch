@@ -57,7 +57,10 @@ registers a health check and two REST resources. Starting never waits to become 
 started at all, a `ManagedLeaderLatchException` is thrown so the service does not start half-working; any later problem,
 such as Postgres being unreachable, is reported as a value instead of an exception (see
 [postgres-leader-latch](https://github.com/kiwiproject/postgres-leader-latch) for how it works, the configuration,
-and deployment notes for RDS). Add listeners before starting, either as arguments or with `addLeaderLatchListener`.
+and deployment notes for RDS). The properties on the JDBC URL above (`connectTimeout`, `tcpKeepAlive`) are PostgreSQL
+JDBC driver settings; the core README explains what they do in
+[Configuring the connection](https://github.com/kiwiproject/postgres-leader-latch#configuring-the-connection).
+Add listeners before starting, either as arguments or with `addLeaderLatchListener`.
 
 Use `ManagedLeaderLatchCreator.from(...)` to configure the creator first (`withoutHealthCheck()`,
 `withoutResources()`, `addLeaderLatchListener(...)`) and then call `start()`.
