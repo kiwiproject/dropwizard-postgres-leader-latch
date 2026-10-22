@@ -63,6 +63,18 @@
                 <artifactId>kiwi-test</artifactId>
                 <version>${kiwi-test.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.kiwiproject</groupId>
+                <artifactId>postgres-leader-latch</artifactId>
+                <version>${postgres-leader-latch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.kiwiproject</groupId>
+                <artifactId>metrics-healthchecks-severity</artifactId>
+                <version>${metrics-healthchecks-severity.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -73,7 +85,6 @@
         <dependency>
             <groupId>org.kiwiproject</groupId>
             <artifactId>postgres-leader-latch</artifactId>
-            <version>${postgres-leader-latch.version}</version>
         </dependency>
 
         <dependency>
@@ -94,7 +105,6 @@
         <dependency>
             <groupId>org.kiwiproject</groupId>
             <artifactId>metrics-healthchecks-severity</artifactId>
-            <version>${metrics-healthchecks-severity.version}</version>
         </dependency>
 
         <dependency>
